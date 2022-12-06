@@ -24,6 +24,8 @@ Il sito deve poi offrire un sistema di login dell'utente per eventuali comunicaz
 04| Check database disponibilità| Data2| il sistema contatta il Data2 che gli restituisce la disponibilita dell'articolo| Richiesta dell'articolo| nessuna| Modifica etichetta articolo| il Data2 restituisce una flag al sistema| //| //|//|
 05| Pagamento| Utente, Data2, Data1| l'utente deve poter pagare con un circuito di pagamento a sua scelta| Interazione utente con procedura di pagamento| almeno un articolo nel carrello| modifica carrello, modifica data1 e data2| utente sceglie di pagare, il  pagamento viene processato, il carrello e i data modificati, e l'articolo viene spedito| pagamento non riuscito, ritorno alla schermata iniziale del carrello| errore pagamento| //|
 
+sesso sesso
+
 
 
 
