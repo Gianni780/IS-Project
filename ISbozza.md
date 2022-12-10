@@ -91,9 +91,29 @@ L’Admin deve poter rifornire il sistema di chiavi digitali acquistandole da un
 
 - La piattaforma apre la finestra del **profilo**
 - la finestra presenta diverse opzioni
-  - storico acquisti
- 
-  - notizie e offerte
-  - modifica informazioni personali
+  - storico acquisti: Il sistema fa visualizzare una nuova finestra all'utente, in questa sono presenti tutti gli acquisti passati, con le varie informazioni associate (**data acquisto**, **nome articolo**, **prezzo articolo**)
+  
+  - notizie e offerte: Il sistema fa visualizzare una nuova finestra all'utente, in questa vi sono disposte, in verticale, tutte le notizie riguardo nuovi articoli presenti nella piattaforma; Insieme a queste è presente anche una piccola finestra in cui vi sono disposte le varie **offerte** disponibili in quel momento
+  
+  - modifica informazioni personali: Il sistema fa visualizzare una nuova finestra all'utente, nella quale sono presenti diversi bottoni con cui l'utente può interagire, che permettono di cambiare alcune informazioni personali(**password**, **indirizzo di fatturazione**, **metodi di pagamento**)
+- una volta aperta la rispettiva finestra questa presenta un opzione per tornare indietro alla pagina del profilo
+
+### 05
+
+- La piattaforma ha già caricato la visualizzazione, con o senza filtri
+- a questo punto l'utente sceglie l'articolo che vuole aggiungere al carrello
+- l'utente interagisce col bottone **aggiungi al carrello**
+- Il sistema comunica col **data1** per controllare la disponibilità dell'articolo
+- viene confermata la disponibilità da parte del data1
+- Il sistema aggiorna la visualizzazione dell'utente, modificando l'icona del carrello
+
+
+### 06
+
+- L'utente si trova nella **visualizzazione del carrello**
+- l'utente sceglie l'articolo da rimuovere e interagisce col bottone **rimuovi**
+- Il sistema aggiorna la visualizzazione del carrello rimuovendo l'articolo in questione e mantenendo eventuali altri articoli
+
+<!--Si deve aggiungere una specifica che descriva il carrello>
 
 
