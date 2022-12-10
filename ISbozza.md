@@ -25,12 +25,13 @@ L’Admin deve poter rifornire il sistema di chiavi digitali acquistandole da un
 - Database fornitore(Data2)
 - Logged: visualizzazione utente registrato
 - Manager: visualizzazione Admin registrato
+- visualizzazione normale: visualizzazione della piattaforma descritta in caso d'uso 12
  
 
 ## Casi D'uso
-|ID|Nome caso d'uso|Attori|Descrizione|Trigger|Precondizioni|Postcondizioni|Normal flow|alternative flow|Eccezioni|Include|
+| ID  | Nome caso d'uso | Attori  | Descrizione | Trigger | Precondizioni | Postcondizioni  | Normal flow | alternative flow  | Eccezioni | Include |
 |-----------|-----------|-------------|---------------|-----------------|-----------------|---------------|-----------------|----------------|-------------------|---------------|
-|01|Modifica rappresentazione sistema   |Utente|L'utente sfoglia gli articoli e modifica la visione tramite i filtri| Interazione dell'utente   |   nessuna| modifica interfaccia visualizzata|l'utente sceglie il filtro da adottare e viene modificata l'interfaccia| // | // |    12    |
+| 01  | Modifica rappresentazione sistema     | Utente  | L'utente sfoglia gli articoli e modifica la visione tramite i filtri  |  Interazione dell'utente   |   nessuna  |  modifica interfaccia visualizzata  | l'utente sceglie il filtro da adottare e viene modificata l'interfaccia |  //  |   //  |    12    |
 |02| Registrazione| Utente| l'utente effettua una nuova registrazione al sistema| Click su pulsante di registrazione| Utente non ancora registrato| Modifica dello status dell'utente| L'utente si interfaccia al sistema e crea un nuovo account| L'utente ha già un account associato, ne crea uno nuovo con altre credenziali| Account già esistente|//|
 |03| Login| Utente, Admin| L'utente/admin accede al sistema| Click sul pulsante di accesso| Account già esistente| // | L'utente/admin usa le proprie credenziali per accedere al sistema| L'utente/admin riprova ad inserire le credenziali in caso di errore di battitura| Account non esistente| 02|
 |04| Visualizzazione storico e notizie| Utente| L'utente dopo l'accesso può visualizzare lo storico degli acquisti e le notizie su offerte e promozioni| Click nella sezione Profilo| account esistente| // | L'utente accede alla sua area personale e visualizza le informazioni di interesse| // |//|03|
@@ -42,6 +43,7 @@ L’Admin deve poter rifornire il sistema di chiavi digitali acquistandole da un
 |10| Avviso prodotti esauriti| Admin| Il sistema notifica all'admin l'esaurimento di chiavi specifiche| Modifica etichetta prodotto| //|//|Il sistema avvisa l'Admin in seguito al rilevamento di prodotti esauriti|//|//|07|
 |11| Acquisto da fornitore| Admin, Fornitore, Circuito di pagamento| L'admin acquista dal fornitore chiavi digitali| click su bottone|//|Aggiornamento catalogo| L'Admin preleva dal data2, dopo conferma dal circuito di pagamento, le chiavi acuistate|//|//|//|
 |   12   |   Rappresentazione interfaccia sistema   |   Utente  |   L'Utente ha una rappresentazione degli articoli nel sistema  |  Apertura piattaforma    |   //  |   //  |   L'Utente puo navigare nel catalogo  |   //  |   //  |   //  |       
+|   13    |   Visualizzazione del carrello    |   Utente    |   Rappresentazione degli articoli nel carrello    |   Interazione dell'utente con l'opzione carrello    |   //    |   //    |   L'utente può modificare e visualizzare gli articoli nel proprio carrello    |   //    |   //    |   //    |
 
 ### Normal flow dei casi d'uso
 
@@ -81,11 +83,15 @@ L’Admin deve poter rifornire il sistema di chiavi digitali acquistandole da un
 - Il Data1 controlla che i dati inseriti siano corretti e fa accedere l'attore al sistema
 - Il sistema chiude la finestra di accesso e la finestra iniziale di visualizzazione
 - In base al profilo dell'attore vengono aperte delle finestre distinte
-- Utente, **Logged**,  visualizzazione normale della piattaforma, con aggiunta di opzione per il **profilo**
+- Utente, **Logged**,  visualizzazione normale della piattaforma, aggiunta di opzioni
+  - **profilo**
+  - **rimosse opzioni di regitrazione**-> accedi, registrati
 - Admin, **Manager**, visualizzazione normale della piattaforma, aggiunta di opzioni
   - Modifica visualizzazione home page
   - Inventario
   - Ordina chiavi fornitore
+  - **rimossa opzione** carrello
+  - **rimosse opzioni di regitrazione**-> accedi, registrati
 
 ### 04
 
@@ -107,13 +113,31 @@ L’Admin deve poter rifornire il sistema di chiavi digitali acquistandole da un
 - viene confermata la disponibilità da parte del data1
 - Il sistema aggiorna la visualizzazione dell'utente, modificando l'icona del carrello
 
-
 ### 06
 
 - L'utente si trova nella **visualizzazione del carrello**
 - l'utente sceglie l'articolo da rimuovere e interagisce col bottone **rimuovi**
 - Il sistema aggiorna la visualizzazione del carrello rimuovendo l'articolo in questione e mantenendo eventuali altri articoli
 
-<!--Si deve aggiungere una specifica che descriva il carrello>
 
+
+### 12
+
+- L'utente apre la piattaforma
+- Il sistema carica la visualizzazione iniziale della piattaforma, questa contiene, oltre alla rappresentazione degli articoli del catalogo messi in ordine **di rilevanza**, diverse opzioni
+  - **accedi**
+  - **registrati**
+  - **carrello**
+  - **filtra per:**
+- L'utente può interagire con ognuno di questi, provocando una modifica della visualizzazione, gestita dal sistema
+
+### 13
+
+- L'utente interagisce con l'opzione carrello a partire dalla visualizzazione normale 
+- Il sistema apre la finestra del carrello, questa contiene
+  - visualizzazione degli articoli con relativa quantità
+  - opzione di rimozione degli articoli, per ogni articolo
+  - opzione di pagamento degli articoli presenti nel carrello
+- L'utente può interagire con ognuna delle opzioni presente
+- L'utente può decidere di tornare alla visualizzazione precedente tramite la relativa opzione
 
