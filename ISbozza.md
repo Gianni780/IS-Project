@@ -1,21 +1,29 @@
 # Progetto E-Commerce di chiavi digitali
 
+
 ## Breve descrizione
 
-Il Sistema (Store online) presenta un catalogo di chiavi digitali (videogiochi) che può essere visualizzato dall’Utente che può filtrare tra le varie categorie.    
-Il Sistema deve consentire la registrazione e il login all’Utente.  
-L’Utente può eseguire il login per visualizzare lo storico degli acquisti e ricevere notizie ed offerte.    
-Il Sistema deve permettere l’acquisto (prelievo della chiave richiesta dal database del Sistema e invio all’Utente tramite mail) di chiavi digitali sia ad Utenti loggati che ad Utenti “Guest” (senza login).  
-Il Sistema deve mettere a disposizione un meccanismo di gestione (aggiunta e rimozioni di articoli) del carrello (in caso di utente loggato lo stato del carrello viene salvato, nel caso di utente Guest il carrello viene eliminato alla chiusura del sistema).   
-Il sistema deve accettare metodi di pagamento diversificati (carta prepagata, carta di debito/credito ecc…).    
-L’Admin può modificare il catalogo del sistema in ogni suo aspetto (Grafica e contenuto).    
-Il Sistema avvisa l’Admin nel caso di prodotti esauriti.	   
-L’Admin deve poter rifornire il sistema di chiavi digitali acquistandole da un Fornitore interfacciandosi direttamente con il database del fornitore (se nel database fornitore sono presenti chiavi digitali disponibili per l’acquisto, l’Admin preleva -compra- tale chiave e l’aggiunge al proprio database).   
-(Per semplicità) Il Fornitore accetta gli stessi metodi di pagamento del Sistema.   
+Si vuole realizzare un sistema per la vendita di chiavi digitali tramite un E-Commerce online, che offra un'interfaccia semplice per l'utente riguardo l'acquisto, e ai vari dipendenti per la gestione del magazzino. Quest'ultimo sarà rifornito grazie a un rivenditore terzo che comunica direttamnte con sistema
+
+## Requisiti funzionali
+
+- Il Sistema deve permettere all'utente di ricercare gli articoli tramite **filtri appositi**
+- Il Sistema deve consentire la **registrazione** e il **login** all’Utente.  
+- L’Utente deve poter visualizzare lo **storico acquisti**, le **notizie** e le **offerte**
+- Il Sistema deve permettere l'acquisto degli articoli sia all'utente **loggato** sia a un **guest**  
+- Il Sistema deve mettere a disposizione un meccanismo di gestione degli articoli da comprare (**carrello acquisti**), che viene gestito diversamente a seconda del **tipo di utente**   
+- Il sistema deve accettare **metodi di pagamento diversificati** (carta prepagata, carta di debito/credito ecc…).    
+- Il dipendente può **modificare il catalogo** del sistema in ogni suo aspetto (**Grafica** e **contenuto**).    
+- Il Sistema deve **avvisare** il dipendente nel caso di prodotti esauriti.	<!-- casella prodotti esauriti nella pagina del profilo del dipendente--> 
+- Il dipendente deve poter **rifornire** il sistema in base alle **chiavi mancanti**
+- L'Admin deve poter rifornire il sistema anche rispetto a **chiavi non presenti** nel sistema
+- L'Admin gestisce la registrazione dei vari **dipendenti** nel sistema
+- (Per semplicità) Il Fornitore accetta gli stessi metodi di pagamento del Sistema.   
 
 
 ## Attori
 - Utente
+- Dipendente
 - Admin
 - Fornitore
 - Circuiti di pagamento 
@@ -24,8 +32,7 @@ L’Admin deve poter rifornire il sistema di chiavi digitali acquistandole da un
 - Data1: Database del sistema con prodotti e credenziali
 - Data2: Database fornitore
 - Logged: visualizzazione utente registrato
-- Manager: visualizzazione Admin registrato
-- visualizzazione normale: visualizzazione della piattaforma descritta in caso d'uso 12
+- Manager: visualizzazione dipendente registrato
 - Sinonimi: "prodotto", "articolo", chiave digitali"
 - Sinonimi: "negozio", "store", "piattaforma"
  
@@ -35,17 +42,16 @@ L’Admin deve poter rifornire il sistema di chiavi digitali acquistandole da un
 |-----------|-----------|-------------|---------------|-----------------|-----------------|---------------|-----------------|----------------|-------------------|---------------|
 | 01  | Modifica rappresentazione sistema     | Utente  | L'utente sfoglia gli articoli e modifica la visione tramite i filtri  |  Interazione dell'utente   |     |  modifica interfaccia visualizzata  | l'utente sceglie il filtro da adottare e viene modificata l'interfaccia |    |   //  |    12    |
 |02| Registrazione| Utente| l'utente effettua una nuova registrazione al sistema| Click su pulsante di registrazione| Utente non ancora registrato| Modifica dello status dell'utente| L'utente si interfaccia al sistema e crea un nuovo account| L'utente ha già un account associato, ne crea uno nuovo con altre credenziali| Account già esistente|//|
-|03| Login| Utente, Admin| L'utente/admin accede al sistema| Click sul pulsante di accesso| Account già esistente| Utente loggato | L'utente/admin usa le proprie credenziali per accedere al sistema| L'utente/admin riprova ad inserire le credenziali in caso di errore di battitura| Account non esistente| 02|
+|03| Login| Utente, Dipendente| L'utente/Dipendente accede al sistema| Click sul pulsante di accesso| Account già esistente| Utente loggato | L'utente/Dipendente usa le proprie credenziali per accedere al sistema| L'utente/Dipendente riprova ad inserire le credenziali in caso di errore di battitura| Account non esistente| 02|
 |04| Visualizzazione Profilo| Utente| L'utente visualizza informazioni personali e ne può modificare alcune| Click nella sezione Profilo| account esistente|  |  L'utente accede alla sua area personale e visualizza informazioni generali  |  |//|03|
 |05| Aggiunta Articolo| Utente| L'utente aggiunge un articolo al carrello| Interazione dell'utente con bottone| | Modifica carrello| Utente sceglie, sistema controlla e aggiunge al carrello| Il prodotto è esaurito e la piattaforma viene aggiornata  | Articolo esaurito| //|
 |06| rimozione articolo| Utente| l'utente rimuove un articolo dal carrello| interazione col carrello| almeno un articolo nel carrello| modifica carrello| Utente sceglie cosa rimuovere, sistema rimuove dal carrello| | //| |
-|07| Check  disponibilità| Utente| il sistema contatta il Data1 che gli restituisce la disponibilita dell'articolo| Richiesta dell'articolo| | Modifica etichetta articolo| L'Utente sceglie un aritocolo, il sistema fa un controllo con il Data1 che gli restituisce una flag| //| //|//|
-|08| Pagamento Utente| Utente, Circuito di pagamento| l'utente deve  pagare con un circuito di pagamento a scelta| Interazione utente con procedura di pagamento| almeno un articolo nel carrello| modifica carrello, modifica data1| utente sceglie di pagare, il  pagamento viene processato, il carrello e i data modificati, e l'articolo viene spedito| pagamento non riuscito, ritorno alla schermata iniziale del carrello| errore pagamento| //|
-|09| Modifica sistema| Admin| L'admin modifica il catalogo nella grafica e nei contenuti| Accesso ad area di modifica| Login effettuato| Modifica interfaccia sistema e/o data1| //|//|//| 03
-|10| Avviso prodotti esauriti| Admin| Il sistema notifica all'admin l'esaurimento di chiavi specifiche| Esaurimento prodotto  |  Login effettuato  |//|Il sistema avvisa l'Admin in seguito al rilevamento di prodotti esauriti|//|//|07|
-|11| Acquisto da fornitore| Admin, Fornitore, Circuito di pagamento| L'admin acquista dal fornitore chiavi digitali| click su bottone|//|Aggiornamento catalogo| L'Admin preleva dal data2, dopo conferma dal circuito di pagamento, le chiavi acuistate|//|//|//|
-|   12   |   Rappresentazione interfaccia sistema   |   Utente  |   L'Utente ha una rappresentazione degli articoli nel sistema  |  Apertura piattaforma    |   //  |   //  |   L'Utente puo navigare nel catalogo  |   //  |   //  |   //  |       
-|   13    |   Visualizzazione del carrello    |   Utente    |   Rappresentazione degli articoli nel carrello    |   Interazione dell'utente con l'opzione carrello    |   //    |   //    |   L'utente può modificare e visualizzare gli articoli nel proprio carrello    |   //    |   //    |   //    |
+|07| Pagamento Utente| Utente, Circuito di pagamento| l'utente deve  pagare con un circuito di pagamento a scelta| Interazione utente con procedura di pagamento| almeno un articolo nel carrello| modifica carrello, modifica data1| utente sceglie di pagare, il  pagamento viene processato, il carrello e i data modificati, e l'articolo viene spedito| pagamento non riuscito, ritorno alla schermata iniziale del carrello| errore pagamento| //|
+|08| Modifica sistema| Dipendente| Il Dipendente modifica il catalogo nella grafica e nei contenuti| Accesso ad area di modifica| Login effettuato| Modifica interfaccia sistema e/o data1| //|//|//| 03
+|09| Avviso prodotti esauriti| Dipendente| Il sistema notifica al Dipendente l'esaurimento di chiavi specifiche| Esaurimento prodotto  |  Login effettuato  |//|Il sistema avvisa il Dipendente in seguito al rilevamento di prodotti esauriti|//|//|07|
+|10| Acquisto da fornitore| Dipendente, Admin, Fornitore, Circuito di pagamento| Il Dipendente acquista dal fornitore chiavi digitali| click su bottone|//|Aggiornamento catalogo| Il Dipendente preleva dal data2, dopo conferma dal circuito di pagamento, le chiavi acuistate|//|//|//|  
+|   11     |   Visualizzazione del carrello    |   Utente    |   Rappresentazione degli articoli nel carrello    |   Interazione dell'utente con l'opzione carrello    |   //    |   //    |   L'utente può modificare e visualizzare gli articoli nel proprio carrello    |   //    |   //    |   //    |
+|   12  |  Registrazione nuovi dipendenti  |  Admin   |   Registrazione di nuovi dipendenti al sistema   |    interazione con funzione registrazione  |    Login Admin effettuato   |       |   specificato altrove   |   specificato altrove   |   //    |   02    |
 
 ### Normal flow dei casi d'uso
 
@@ -82,7 +88,7 @@ L’Admin deve poter rifornire il sistema di chiavi digitali acquistandole da un
   
 ### 03
 
-(Attore = Admin/Utente)
+(Attore = Dipendente/Utente) (Il flow per il dipendente è valido anche per l'Admin)
 1. La piattaforma ha già caricato la visualizzazione, con o senza filtri
 2. L'attore clicca sul bottone **accedi** 
 3. Il sistema apre una finestra di accesso con i campi da riempire
@@ -97,7 +103,7 @@ L’Admin deve poter rifornire il sistema di chiavi digitali acquistandole da un
   - Nuove funzioni:
     - Aggiunta dell'opzione **profilo**
     - **rimozione opzioni di regitrazione**-> accedi, registrati
-  - Admin -> **Manager**, visualizzazione normale della piattaforma
+  - Dipendente -> **Manager**, visualizzazione normale della piattaforma
   - Nuove funzioni:
     - Modifica della visualizzazione home page
     - Gestione Inventario
@@ -143,14 +149,7 @@ L’Admin deve poter rifornire il sistema di chiavi digitali acquistandole da un
 2. l'utente sceglie l'articolo da rimuovere e interagisce col bottone **rimuovi**
 3. Il sistema aggiorna la visualizzazione del carrello ed il su contenuto rimuovendo l'articolo in questione e mantenendone eventuali altri
 
-### 07
-
-1. L'utente si trova gìà nel catalogo
-2. L'utente sceglie il prodotto da acquistare
-3. Il sistema comunica con il data1 per verificarne la disponibilità
-4. Il sistema aggiorna l'etichetta del prodotto
-
-### 08 (c'è anche l'alternative flow)
+### 07 (c'è anche l'alternative flow)
 
 1. L'utente, tramite apposita icona, accede sezione **carrello**
 2. L'utente procede all'acquisto tramine bottone dedicato
@@ -167,14 +166,14 @@ L’Admin deve poter rifornire il sistema di chiavi digitali acquistandole da un
 9. Dopo l'acquisto l'utente viene riportato alla schermata del carrello
 10. Il data1 viene aggiornato in base ai prodotti che sono stati acquistati e quindi vengono eliminati da quelli disponibili
 
-### 09
+### 08
 
-1. L'admin si collega al negozio tramite browser
+1. Il Dipendente si collega al negozio tramite browser
 2. Il sistema mostra la visualizzazione normale
-3. L'admin accede con le proprie credenziali tramite il bottone **Accedi**
-4. Il sistema riconosce l'admin dalle credenziali inserite
+3. Il Dipendente accede con le proprie credenziali tramite il bottone **Accedi**
+4. Il sistema riconosce il Dipendente dalle credenziali inserite
 5. Viene mostrata la visualizzazione **Manager** dello store
-6. L'admin entra nella sezione di **Modifica** tramite apposito bottone
+6. il dipendente entra nella sezione di **Modifica** tramite apposito bottone
 7. Vengono mostrate nuove opzioni:
   - Modifica prodotti disonibili (prezzo, quantità E rimozione)
   - Aggiunta nuovi prodotti
@@ -182,38 +181,30 @@ L’Admin deve poter rifornire il sistema di chiavi digitali acquistandole da un
 8. In base alle modifiche apportate viene modificato data1
 9. Al termine delle modifiche viene visualizzata un'anteprima dello store
 
-### 10
+### 09
 
 1. Dopo ogni transazione viene effettuato un controllo
 2. Il sistema verifica lo stato dei prodotti (tramite apposite etichette)
-3. Il sistema notifica all'admin i prodotti non più disponibili aggiungendo un messaggio con la lista completa nella sezione dedicata
+3. Il sistema notifica all'Dipendente i prodotti non più disponibili aggiungendo un messaggio con la lista completa nella sezione dedicata
+
+### 10
+
+Utente = Dipdendente/Admin
+1. L'utente ha già effettuato l'accesso
+2. L'utente viene reindirizzato al data2 tramite apposito bottone prensente nella visualizzazione Manager
+3. A seconda del tipo di utente sono presenti diverse opzioni:
+   - Dipendente: possono essere riforniti gli articoli già presenti nel sistema
+   - Admin: oltre a poter rifornire gli articoli già presenti è possibile acquistarne di nuovi
+4. L'utente sceglie queli prodotti acquistare
+5. L'utente sceglie il metodo di pagamento
+6. L'utente inserisce i dati di pagamento
+7. Il circuito di pagamento processa la transazione
+8. Il circuito di pagamento notifica l'avvenuta transazione al sistema
+9.  Il sistema aggiorna il data1 con i nuovi prodotti
+10. Il data2 viene aggiornato (modifica etichetta relativa alla quantità dei prodotti)
+11. Al termine del processo, IlDipendente viene reindirizzato alla visualizzazione del data2
 
 ### 11
-
-1. L'admin ha già effettuato l'accesso
-2. L'admin viene reindirizzato al data2 tramite apposito bottone prensente nella visualizzazione Manager
-3. L'admin sceglie queli prodotti acquistare
-4. L'admin sceglie il metodo di pagamento
-5. L'admin inserisce i dati di pagamento
-6. Il circuito di pagamento processa la transazione
-7. Il circuito di pagamento notifica l'avvenuta transazione al sistema
-8. Il sistema aggiorna il data1 con i nuovi prodotti
-9. Il data2 viene aggiornato (modifica etichetta relativa alla quantità dei prodotti)
-10. Al termine del processo, l'admin viene reindirizzato alla visualizzazione del data2
-
-
-### 12
-
-1. L'utente cerca la piattaforma tramite browser
-2. L'utente apre la piattaforma
-3. Il sistema carica la visualizzazione iniziale della piattaforma, questa contiene, oltre alla rappresentazione degli articoli del catalogo messi in ordine **di rilevanza**, diverse opzioni
-  - **accedi**
-  - **registrati**
-  - **carrello**
-  - **filtra per:**
-4. L'utente può interagire con ognuno di questi, provocando una modifica della visualizzazione, gestita dal sistema
-
-### 13
 
 1. L'utente interagisce con l'opzione carrello a partire dalla visualizzazione normale 
 2. Il sistema apre la finestra del carrello, questa contiene
