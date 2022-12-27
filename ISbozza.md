@@ -223,7 +223,7 @@ Utente = Dipendente/Admin
 
 ### 12
 
-#### registrazione
+#### 12.registrazione
 
 1. L'admin accede alla sua area personale
 2. L'admin interagisce con il bottone per la registrazione di nuovi dipendenti al sistema
@@ -231,7 +231,7 @@ Utente = Dipendente/Admin
 4. Dopo una verifica del sistema dei dati inseriti dall'admin il nuovo profilo viene creato
 5. Il sistema riporta l'admin alla schermata del suo profilo e crea una finestra con il messaggio di avvenuta registrazione
 
-#### Delezione
+#### 12.Delezione
 
 1. L'admin accede alla sua area personale
 2. L'admin interagisce con il bottone per la delezione di un profilo dalla piattaforma (che sia di un utente o un dipendente)
@@ -240,3 +240,16 @@ Utente = Dipendente/Admin
 5. L'admin sceglie l'account con opportuna interazione tramite bottone
 6. Il sistema elimina definitivamente il profilo dal data1
 7. Il sistema riporta l'admin alla schermata del suo profilo e crea una finestra con il messaggio di avvenuta delezione
+
+## (Schizzo per la progettazione)
+
+### Classi
+
+- Articolo
+- Carrello
+- Utente (specializzato in base al tipo)
+- Rappresentazione del sistema (specializzata in base alla schermata desiderata)
+- Pagamento
+- Manager gestione dei filtri
+- Manager modifica del sistema
+- Manager gestione articoli (aggiunta, rimozione, etc..)
