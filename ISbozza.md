@@ -9,6 +9,8 @@ In questo caso l'attenzione alla **fase di definizione dei requisiti** e' massim
 
 Si vuole realizzare un sistema per la vendita di chiavi digitali tramite un E-Commerce online, che offra un'interfaccia semplice per l'utente riguardo l'acquisto, e ai vari dipendenti per la gestione del magazzino. Quest'ultimo sarà rifornito grazie a un rivenditore terzo che comunica direttamente con sistema
 
+## **FASE DI ANALISI**
+
 ## Requisiti funzionali
 
 - Il Sistema deve permettere all'utente di ricercare gli articoli tramite **filtri appositi**
@@ -253,3 +255,34 @@ Utente = Dipendente/Admin
 - Manager gestione dei filtri
 - Manager modifica del sistema
 - Manager gestione articoli (aggiunta, rimozione, etc..)
+
+![Diagramma delle classi iniziale](Diagrammi_immagini/Class_Diagram_Analisi.svg)  
+
+La struttura del sistema sarà composta da queste classi fondamentali, dalle quali si svilupperà tutto l'intorno;  
+La visione scelta in questo caso è sicuramente quella dell'Utente/Compratore;  
+Prima di arrivare al diagramma delle classi vero e proprio ci sono sicuramente da considerare vari aspetti del sistema come i pattern possibili da seguire e le relazioni tra classi piu' nello specifico.  
+
+## **FASE DI PROGETTAZIONE**
+
+### Model View Controller (MVC)
+
+Tramite l'uso di questo **pattern architetturale** riusciamo a dividere le 3 componenti fondamentali del sistema.  
+Questo porta a diversi vantaggi nella gestione del sistema e nel comportamento dello stesso:
+- Logica di lavoro del sistema ben definita
+- Maggiore facilità nella fase di scrittura e testing del codice
+- Rafforzamento della sicurezza (intermediario tra Utente e dati)
+
+La divisione del sistema avverrà con i ruoli che saranno ricoperti rispettivamente da:
+- **Controller** = Manager di gestione vari del sistema
+- **Model** = Dati contenuti nei vari Database e classi del sistema (Es. **Articolo**)
+- **View** = Interfaccia di comunicazione del sistema con l'Utente (**Rappresentazione del sistema**)
+
+### Factory method
+
+Questo **pattern di design** 
+
+
+
+
+
+
