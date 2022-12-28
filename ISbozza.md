@@ -7,7 +7,7 @@ In questo caso l'attenzione alla **fase di definizione dei requisiti** e' massim
 
 ## Breve descrizione
 
-Si vuole realizzare un sistema per la vendita di chiavi digitali tramite un E-Commerce online, che offra un'interfaccia semplice per l'utente riguardo l'acquisto, e ai vari dipendenti per la gestione del magazzino. Quest'ultimo sarà rifornito grazie a un rivenditore terzo che comunica direttamente con sistema
+Si vuole realizzare un sistema per la vendita di chiavi digitali tramite un E-Commerce online, che offra un'interfaccia semplice per l'utente riguardo l'acquisto; ai vari dipendenti e all'admin per la gestione del magazzino. Quest'ultimo sarà rifornito grazie a un rivenditore terzo con cui il sistema comunica direttamente.
 
 ## **FASE DI ANALISI**
 
@@ -22,13 +22,13 @@ Si vuole realizzare un sistema per la vendita di chiavi digitali tramite un E-Co
 - Il dipendente può **modificare il catalogo** del sistema in ogni suo aspetto (**Grafica** e **contenuto**).    
 - Il Sistema deve **avvisare** il dipendente nel caso di prodotti esauriti.	<!-- casella prodotti esauriti nella pagina del profilo del dipendente--> 
 - Il dipendente deve poter **rifornire** il sistema in base alle **chiavi mancanti**
-- L'Admin deve poter rifornire il sistema anche rispetto a **chiavi non presenti** nel sistema
+- L'Admin deve poter aggiungere e rimuovere **nuove tipologie** di chiavi digitali
 - L'Admin gestisce la registrazione dei vari **dipendenti** nel sistema
 - (Per semplicità) Il Fornitore accetta gli stessi metodi di pagamento del Sistema.   
 
 ## Requisiti non funzionali
 
-- La transazione deve essere altamente sicura da parte di un qualsiasi utente
+- La transazione deve essere altamente sicura
 - Il prodotto deve essere consegnato in breve tempo (~3 min. max.)
 - La piattaforma deve essere funzionante 24/7
 
@@ -36,31 +36,38 @@ Si vuole realizzare un sistema per la vendita di chiavi digitali tramite un E-Co
 - Utente
 - Dipendente
 - Admin
-- Fornitore
-- Circuiti di pagamento 
+- Fornitore (attore secondario)
+- Circuiti di pagamento (attore secondario)
 
 ## Glossario 
 - Data1: Database del sistema con prodotti e credenziali
 - Data2: Database fornitore
 - Logged: visualizzazione utente registrato
 - Manager: visualizzazione dipendente registrato
-- Sinonimi: "prodotto", "articolo", chiave digitali"
+- Sinonimi: "prodotto", "articolo", "chiave digitali"
 - Sinonimi: "negozio", "store", "piattaforma"
- 
+- Time-Out: in seguito all'input inserito si trascorre troppo tempo in attesa del relativo output
+
+<div style="page-break-after: always"></div>
+
 ## Casi D'uso
 | ID  | Nome caso d'uso | Attori  | Descrizione | Trigger | Precondizioni | Post condizioni  | Eccezioni | Include |
 |-----------|-----------|-------------|---------------|-----------------|-----------------|---------------|-----------------|----------------|
-| 01  | Modifica rappresentazione sistema     | Utente  | L'utente sfoglia gli articoli e modifica la visione tramite i filtri  |  Interazione dell'utente   |     |  modifica interfaccia visualizzata  |   Time-Out   |        |
-|02| Registrazione| Utente| l'utente effettua una nuova registrazione al sistema| Click su pulsante di registrazione| Utente non ancora registrato| Logged | Time-Out, Account già esistente|  |
-|03| Login| Utente, Dipendente| L'utente/Dipendente accede al sistema| Click sul pulsante di accesso| Account già esistente| Logged | Time-Out, Account non esistente|  |
+| 01  | Modifica rappresentazione sistema     | Utente  | L'utente sfoglia gli articoli e modifica la visione tramite i filtri  |  Interazione dell'utente   |  //   |  modifica interfaccia visualizzata  |   Time-Out   |     //   |
+|02| Registrazione| Utente| l'utente effettua una nuova registrazione al sistema| Click su pulsante di registrazione| Utente non ancora registrato| Logged | Time-Out, Account già esistente|  //|
+|03| Login| Utente, Dipendente, Admin| L'Utente/Dipendente/Admin accede al sistema| Click sul pulsante di accesso| Account già esistente| Logged | Time-Out, Account non esistente| 02 |
 |04| Visualizzazione Profilo| Utente| L'utente visualizza informazioni personali e ne può modificare alcune| Click nella sezione Profilo|Logged |  |  Time-Out  |  |
 |05| Aggiunta Articolo| Utente| L'utente aggiunge un articolo al carrello| Interazione dell'utente con bottone| | Modifica carrello|  Time-Out, Articolo esaurito|  |
 |06| rimozione articolo| Utente| l'utente rimuove un articolo dal carrello| interazione col carrello| almeno un articolo nel carrello| modifica carrello | Time-Out, Articolo non piu presente| |
 |07| Pagamento Utente| Utente, Circuito di pagamento| l'utente deve  pagare con un circuito di pagamento a scelta| Interazione utente con procedura di pagamento| almeno un articolo nel carrello| modifica carrello, modifica data1 | Time-Out, errore pagamento, Pagamento cancellato |  |
 |08| Modifica sistema| Dipendente| Il Dipendente modifica il catalogo nella grafica e nei contenuti| Accesso ad area di modifica| Logged| Modifica interfaccia sistema e/o data1|Time-Out|  |
-|09| Acquisto da fornitore| Dipendente, Admin, Fornitore, Circuito di pagamento| Il Dipendente acquista dal fornitore chiavi digitali| click su bottone|Logged  |Aggiornamento catalogo|Time-Out, Articolo non presente, cancellazione pagamento|   07  |  
+|09| Acquisto da fornitore| Dipendente, Admin, Fornitore, Circuito di pagamento| Il Dipendente/admin acquista dal fornitore chiavi digitali| click su bottone|Logged  |Aggiornamento catalogo|Time-Out, Articolo non presente, cancellazione pagamento|   07  |  
 |   10    |   Visualizzazione del carrello    |   Utente    |   Rappresentazione degli articoli nel carrello    |   Interazione dell'utente con l'opzione carrello    |    |     |   Time-Out   |      |
-|   11  |  Registrazione e cancellazione dipendenti |  Admin   |   Registrazione di nuovi dipendenti al sistema   |    interazione con funzione registrazione  |    Logged    |       |   Time-Out, ID dipendente già presente  |  02    |
+|   11  |  Registrazione dipendenti |  Admin   |   Registrazione di nuovi dipendenti al sistema   |    interazione con funzione registrazione  |    Logged    |   Aggiornamneto lista dipendenti    |   Time-Out, ID dipendente già presente  |  02    |
+| 12 | Cancellazione dipendenti | Admin | L'admin sceglie di rimuovere un dipendente dal sistema | Interazione con apposita funzione | Logged | Aggiornamneto lista dipendenti | Time-Out, ID dipendente non presente| |
+| 13 | Aggiunta nuovo articolo | Admin | L'admin inserisce nel catalogo nuovi articoli | Interazione con apposita funzione | Logged | Aggiornamento catalogo| Time-Out, articolo già presente | |
+
+<div style="page-break-after: always"></div>
 
 ### Normal flow dei casi d'uso
 
@@ -80,10 +87,11 @@ Si vuole realizzare un sistema per la vendita di chiavi digitali tramite un E-Co
 2. L'utente clicca sul bottone di **registrazione**
 3. La piattaforma apre una finestra di registrazione in cui sono presenti dei campi da riempire
 4. L'utente riempie i campi con le proprie informazioni personali 
-  - nome
-  - cognome
-  - email
-  - password
+   - nome
+   - cognome
+   - email
+   - password
+   - conferma password
 5. L'utente clicca il bottone di **conferma**
 6. Il sistema memorizza le informazioni sul Data1
 7. Il sistema chiude la finestra di registrazione
@@ -108,11 +116,11 @@ Si vuole realizzare un sistema per la vendita di chiavi digitali tramite un E-Co
 6. Il Data1 controlla che i dati inseriti siano corretti e fa accedere l'attore al sistema
 7. Il sistema chiude la finestra di accesso
 8. In base al profilo dell'attore viene mostrata un diversa visualizzazione della piattaforma:
-  - Utente -> **Logged** e visualizzazione normale della piattaforma
+  - Utente -> visualizzazione **Logged**
   - Nuove funzioni:
     - Aggiunta dell'opzione **profilo**
     - **rimozione opzioni di registrazione**-> accedi, registrati
-  - Dipendente -> **Manager**, visualizzazione normale della piattaforma
+  - Dipendente -> visualizzazione **Manager**
   - Nuove funzioni:
     - Modifica della visualizzazione home page
     - Gestione Inventario
@@ -151,16 +159,17 @@ Si vuole realizzare un sistema per la vendita di chiavi digitali tramite un E-Co
 
 5. non viene confermata la disponibilità da parte del data1
 6. Il sistema aggiorna la visualizzazione dell'utente modificando l'etichetta dell'articolo in questione
+7. Il sistema notifica ai dipendenti/admin che il prodotto è esaurito
 
 ### 06
 
 1. L'utente, tramite la relativa icona, accede alla **visualizzazione del carrello**
 2. l'utente sceglie l'articolo da rimuovere e interagisce col bottone **rimuovi**
-3. Il sistema aggiorna la visualizzazione del carrello ed il su contenuto rimuovendo l'articolo in questione e mantenendone eventuali altri
+3. Il sistema aggiorna la visualizzazione del carrello ed il suo contenuto rimuovendo l'articolo in questione e mantenendone eventuali altri
 
-### 07 (c'è anche l'alternative flow)
+### 07 (alternative flow incluso)
 
-1. L'utente, tramite apposita icona, accede sezione **carrello**
+1. L'utente, tramite apposita icona, accede alla sezione **carrello**
 2. L'utente procede all'acquisto tramite bottone dedicato
 3. Viene mostrata una finestra con tutti i metodi di pagamento disponibili
 4. L'utente ne sceglie uno
@@ -184,48 +193,31 @@ Si vuole realizzare un sistema per la vendita di chiavi digitali tramite un E-Co
 5. Viene mostrata la visualizzazione **Manager** dello store
 6. il dipendente entra nella sezione di **Modifica** tramite apposito bottone
 7. Vengono mostrate nuove opzioni:
-  - Modifica prodotti disponibili (prezzo, quantità E rimozione)
-  - Aggiunta nuovi prodotti
-  - Modifica grafica del negozio
+   - Modifica prodotti disponibili (prezzo, quantità e rimozione)
+   - Aggiunta nuovi prodotti
+   - Modifica grafica del negozio
 8. In base alle modifiche apportate viene modificato data1
 9. Al termine delle modifiche viene visualizzata un'anteprima dello store
 
-### 09
+### 09 
 
-1. Dopo ogni transazione viene effettuato un controllo
-2. Il sistema verifica lo stato dei prodotti (tramite apposite etichette)
-3. Il sistema notifica all'Dipendente i prodotti non più disponibili aggiungendo un messaggio con la lista completa nella sezione dedicata
+(Attore = Dipendente e Admin)
+1. L'attore è già loggato
+2. L'attore, tramite sezione apposita, accede al data2 del fornitore
+3. In base alla tipologia di articoli presenti già nel data1, vengono visualizzati solo i rispettivi prodotti del data2
+4. L'attore sceglie quali e quante chiavi acquistare
+5. L'attore conferma gli articoli selezionati
+6. Viene ripetuta la procedura del caso d'uso 07 a partire dal passo 3 al passo 8
+7. Viene aggiornato il data1 (aggiungendo gli articoli acquistati) e il data2 (rimuovendo gli articoli acquistati)
+8. L'attore viene riportato alla visualizzazione iniziale del data2
 
 ### 10
 
-Utente = Dipendente/Admin
-1. L'utente ha già effettuato l'accesso
-2. L'utente viene reindirizzato al data2 tramite apposito bottone presente nella visualizzazione Manager
-3. A seconda del tipo di utente sono presenti diverse opzioni:
-   - Dipendente: possono essere riforniti gli articoli già presenti nel sistema
-   - Admin: oltre a poter rifornire gli articoli già presenti è possibile acquistarne di nuovi
-4. L'utente sceglie quali prodotti acquistare
-5. L'utente sceglie il metodo di pagamento
-6. L'utente inserisce i dati di pagamento
-7. Il circuito di pagamento processa la transazione
-8. Il circuito di pagamento notifica l'avvenuta transazione al sistema
-9.  Il sistema aggiorna il data1 con i nuovi prodotti
-10. Il data2 viene aggiornato (modifica etichetta relativa alla quantità dei prodotti)
-11. Al termine del processo, IlDipendente viene reindirizzato alla visualizzazione del data2
+1. L'utente è già loggato
+2. L'utente accede al carrello tramite relativa icona
+3. Il sistema modifica la visualizzazione della pagina mostrando gli articoli nel carrello
 
 ### 11
-
-1. L'utente interagisce con l'opzione carrello a partire dalla visualizzazione normale 
-2. Il sistema apre la finestra del carrello, questa contiene
-  - visualizzazione degli articoli con relativa quantità
-  - opzione di rimozione degli articoli, per ogni articolo
-  - opzione di pagamento degli articoli presenti nel carrello
-3. L'utente può interagire con ognuna delle opzioni presenti
-4. L'utente può decidere di tornare alla visualizzazione precedente tramite la relativa opzione
-
-### 12
-
-#### 12.registrazione
 
 1. L'admin accede alla sua area personale
 2. L'admin interagisce con il bottone per la registrazione di nuovi dipendenti al sistema
@@ -233,7 +225,7 @@ Utente = Dipendente/Admin
 4. Dopo una verifica del sistema dei dati inseriti dall'admin il nuovo profilo viene creato
 5. Il sistema riporta l'admin alla schermata del suo profilo e crea una finestra con il messaggio di avvenuta registrazione
 
-#### 12.Delezione
+### 12
 
 1. L'admin accede alla sua area personale
 2. L'admin interagisce con il bottone per la delezione di un profilo dalla piattaforma (che sia di un utente o un dipendente)
@@ -242,6 +234,15 @@ Utente = Dipendente/Admin
 5. L'admin sceglie l'account con opportuna interazione tramite bottone
 6. Il sistema elimina definitivamente il profilo dal data1
 7. Il sistema riporta l'admin alla schermata del suo profilo e crea una finestra con il messaggio di avvenuta delezione
+
+### 13
+
+1. L'adim è già loggato
+2. L'admin accede alla sua area personale
+3. Tramite apposito comanando, l'admin visualizza una lista completa dei prodotti in catalogo
+4. L'admin aggiunge una nuova voce alla lista inserendo il nuovo prodotto
+5. Il sistema controlla che il prodotto non sia gìà presente (confrontando ID)
+6. Il sistema visualizza un messaggio di conferma
 
 ## (Schizzo per la progettazione)
 
