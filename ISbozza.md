@@ -17,7 +17,8 @@ Si vuole realizzare un sistema per la vendita di chiavi digitali tramite un E-Co
 - Il Sistema deve consentire la **registrazione** e il **login** all’Utente.  
 - L’Utente deve poter visualizzare lo **storico acquisti**, le **notizie** e le **offerte**
 - Il Sistema deve permettere l'acquisto degli articoli sia all'utente **loggato** sia a un **guest**  
-- Il Sistema deve mettere a disposizione un meccanismo di gestione degli articoli da comprare (**carrello acquisti**), che viene gestito diversamente a seconda del **tipo di utente**   
+- Il Sistema deve mettere a disposizione un meccanismo di gestione degli articoli da comprare (**carrello acquisti**), che viene gestito diversamente a seconda del **tipo di utente**  
+- Il Sistema deve fornire una funzione per il **ri-acquisto** di carrelli passati, tramite la sezione di **storico** 
 - Il sistema deve accettare **metodi di pagamento diversificati** (carta prepagata, carta di debito/credito ecc...).    
 - Il dipendente può **modificare il catalogo** del sistema in ogni suo aspetto (**Grafica** e **contenuto**).    
 - Il Sistema deve **avvisare** il dipendente nel caso di prodotti esauriti.	<!-- casella prodotti esauriti nella pagina del profilo del dipendente--> 
@@ -63,9 +64,11 @@ Si vuole realizzare un sistema per la vendita di chiavi digitali tramite un E-Co
 |08| Modifica sistema| Dipendente| Il Dipendente modifica il catalogo nella grafica e nei contenuti| Accesso ad area di modifica| Logged| Modifica interfaccia sistema e/o data1|Time-Out|  |
 |09| Acquisto da fornitore| Dipendente, Admin, Fornitore, Circuito di pagamento| Il Dipendente/admin acquista dal fornitore chiavi digitali| click su bottone|Logged  |Aggiornamento catalogo|Time-Out, Articolo non presente, cancellazione pagamento|   07  |  
 |   10    |   Visualizzazione del carrello    |   Utente    |   Rappresentazione degli articoli nel carrello    |   Interazione dell'utente con l'opzione carrello    |    |     |   Time-Out   |      |
-|   11  |  Registrazione dipendenti |  Admin   |   Registrazione di nuovi dipendenti al sistema   |    interazione con funzione registrazione  |    Logged    |   Aggiornamneto lista dipendenti    |   Time-Out, ID dipendente già presente  |  02    |
-| 12 | Cancellazione dipendenti | Admin | L'admin sceglie di rimuovere un dipendente dal sistema | Interazione con apposita funzione | Logged | Aggiornamneto lista dipendenti | Time-Out, ID dipendente non presente| |
+|   11  |  Registrazione dipendenti |  Admin   |   Registrazione di nuovi dipendenti al sistema   |    interazione con funzione registrazione  |    Logged    |   Aggiornamento lista dipendenti    |   Time-Out, ID dipendente già presente  |  02    |
+| 12 | Cancellazione dipendenti | Admin | L'admin sceglie di rimuovere un dipendente dal sistema | Interazione con apposita funzione | Logged | Aggiornamento lista dipendenti | Time-Out, ID dipendente non presente| |
 | 13 | Aggiunta nuovo articolo | Admin | L'admin inserisce nel catalogo nuovi articoli | Interazione con apposita funzione | Logged | Aggiornamento catalogo| Time-Out, articolo già presente | |
+| 14 | Acquisto carrelli passati | Utente | Il cliente acquista nuovamente degli articoli già acquistati | Interazione con funzione di ri-acquisto | Logged, Storico non vuoto | Aggiornamento carrello | Time-Out | |
+
 
 <div style="page-break-after: always"></div>
 
@@ -237,12 +240,19 @@ Si vuole realizzare un sistema per la vendita di chiavi digitali tramite un E-Co
 
 ### 13
 
-1. L'adim è già loggato
+1. L'admin è già loggato
 2. L'admin accede alla sua area personale
-3. Tramite apposito comanando, l'admin visualizza una lista completa dei prodotti in catalogo
+3. Tramite apposito comando, l'admin visualizza una lista completa dei prodotti in catalogo
 4. L'admin aggiunge una nuova voce alla lista inserendo il nuovo prodotto
-5. Il sistema controlla che il prodotto non sia gìà presente (confrontando ID)
+5. Il sistema controlla che il prodotto non sia già presente (confrontando ID)
 6. Il sistema visualizza un messaggio di conferma
+
+### 14
+
+1. Il cliente e' già logged
+2. Il cliente accede alla sua sezione dello storico acquisti
+3. Il cliente sceglie un ordine da comprare nuovamente e interagisce con il bottone per il ri-acquisto
+4. Il sistema popola il carrello con gli articoli dell'ordine scelto
 
 ## (Schizzo per la progettazione)
 
@@ -265,7 +275,7 @@ Prima di arrivare al diagramma delle classi vero e proprio ci sono sicuramente d
 
 ## **FASE DI PROGETTAZIONE**
 
-### Model View Controller (MVC)
+### **Model View Controller (MVC)**
 
 Tramite l'uso di questo **pattern architetturale** riusciamo a dividere le 3 componenti fondamentali del sistema.  
 Questo porta a diversi vantaggi nella gestione del sistema e nel comportamento dello stesso:
@@ -274,13 +284,28 @@ Questo porta a diversi vantaggi nella gestione del sistema e nel comportamento d
 - Rafforzamento della sicurezza (intermediario tra Utente e dati)
 
 La divisione del sistema avverrà con i ruoli che saranno ricoperti rispettivamente da:
-- **Controller** = Manager di gestione vari del sistema
+- **Controller** = Manager di gestione del sistema
 - **Model** = Dati contenuti nei vari Database e classi del sistema (Es. **Articolo**)
 - **View** = Interfaccia di comunicazione del sistema con l'Utente (**Rappresentazione del sistema**)
 
-### Factory method
+### **Singleton**
 
-Questo **pattern di design** 
+Questo pattern ci assicura che alcune classi del sistema abbiano una e una sola istanza, come ad esempio il **manager utente** che dev'essere uguale per tutte le istanze del sistema
+
+### **Observer**
+
+Observer ci fornisce un modo semplice di gestire gli acquisti e i rifornimenti di articoli a run-time, in quanto le quantità di prodotti disponibili possono cambiare nel poco tempo in cui si decide di acquistare dal sistema  
+<!-- observer attaccati a ciascun articolo nel sistema globalmente -->
+
+
+### **Proxy**
+
+Il pattern Proxy ci permette di avere una maggiore protezione nella fase di acquisto di articoli dal sistema, che sia questa da parte di un cliente o meno, l'utente comunicherà' con una infrastruttura posta a meta' tra il sistema e il circuito bancario, assicurando una maggior sicurezza
+
+### **Memento**
+
+Per permettere un acquisto piu' veloce di articoli già acquistati in precedenza, possiamo utilizzare questo pattern per "ricordare" i carrelli passati, tramite lo storico acquisti del cliente
+
 
 
 
