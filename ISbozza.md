@@ -274,8 +274,6 @@ Si vuole realizzare un sistema per la vendita di chiavi digitali tramite un E-Co
 
 ## **FASE DI PROGETTAZIONE**
 
-#
-
 Una volta definiti i requisiti in fase di Analisi bisogna definire come questi saranno soddisfatti. <br />
 A questo livello, viene definita la struttura complessiva del sistema in base ai moduli principali di cui è composto e alle relazioni che li legano.
 
@@ -293,7 +291,7 @@ Di seguito degli esempi: <br />
 
 ## **Diagramma delle classi iniziale**
 
-Dalla definizione dei casi d'uso si puo' ricercare una struttura iniziale del sistema, che prevede delle classi per la gestione delle funzioni descritte
+Dalla definizione dei casi d'uso si può ricercare una struttura iniziale del sistema, che prevede delle classi per la gestione delle funzioni descritte
 
 ### Classi
 
@@ -402,10 +400,28 @@ Il diagramma dei rilasci/deployment mostra l'infrastruttura hardware su cui si p
 ![Diagramma dei deployment](Diagrammi_immagini/DeploymentDiagram.svg)
 <p style="text-align: center;">Diagramma dei deployment</p>
 
+## **Diagrammi BPMN**
 
+I diagrammi BPMN aiutano a descrivere un processo all'interno del sistema sotto vari aspetti; infatti il BPMN può essere utilizzato dagli analisti dei processi, sviluppatori dell'implementazione dei processi o anche da stakeholders che vogliono comprendere i processi che mette in gioco la piattaforma
 
+![Diagramma BPMN Pagamento](BPMN_Pagamento.svg)
+<p style="text-align: center;">Diagramma BPMN Pagamento</p>
 
+![Diagramma BPMN Login](bpmn-login.svg)
+<p style="text-align: center;">Diagramma BPMN Login</p>
 
+#
+
+## **FASE DI TESTING**
+
+La fase di testing prevede diversi tipi di test che permettono di valutare diversi aspetti del codice, dalle performance in termini di tempo, a quelle di risorse, dalle risposte del sistema in condizioni nominali, a quelle in condizioni di stress; ma prima di questi test piu' approfonditi vi sono i test di unita' e integrazione che testano i singoli moduli al loro interno, e le relazioni con altri moduli che eventualmente richiamano;  
+I test che abbiamo effettuato prevedono la verifica di alcune funzioni del carrello, una delle classi principali del sistema, utilizzando anche la classe Articolo anche se definita in modo approssimato rispetto a quello che dovrebbe essere (**stub**).
+
+![Interfaccia Lista](TESTS/Immagini_Test/Lista.png)
+![Classe Articolo](TESTS/Immagini_Test/Articolo.png)
+![Classe Carrello1](TESTS/Immagini_Test/Carrello1.png)
+![Classe Carrello2](TESTS/Immagini_Test/Carrello2.png)
+![Test effettivo](TESTS/Immagini_Test/CarrelloTest.png)
 
 
 
