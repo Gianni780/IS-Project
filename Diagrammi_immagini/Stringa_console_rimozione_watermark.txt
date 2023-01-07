@@ -1,0 +1,1 @@
+java -jar target/staruml-watermark.jar -d C:/Users/army2/Desktop/Universita/Terzo_Anno/Ingegneria_del_software/IS-Project-main/Diagrammi_immagini
