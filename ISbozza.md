@@ -273,7 +273,31 @@ La struttura del sistema sarà composta da queste classi fondamentali, dalle qua
 La visione scelta in questo caso è sicuramente quella dell'Utente/Compratore;  
 Prima di arrivare al diagramma delle classi vero e proprio ci sono sicuramente da considerare vari aspetti del sistema come i pattern possibili da seguire e le relazioni tra classi piu' nello specifico.  
 
+#
+
 ## **FASE DI PROGETTAZIONE**
+
+#
+
+Una volta definiti i requisiti in fase di Analisi bisogna definire come questi saranno soddisfatti. <br />
+A questo livello, viene definita la struttura complessiva del sistema in base ai moduli principali di cui è composto e alle relazioni che li legano.
+
+## **Diagramma dei casi d'uso**
+I diagrammi dei casi d'uso sono usati durante l'esplicitazione dei requisiti per rappresentare comportamenti esterni. <br />
+Di seguito degli esempi: <br />
+
+![Diagramma casi d'uso Utente](Diagrammi_immagini/Utente_UseCase.svg)
+
+<p style="text-align: center;">Diagramma casi d'uso Utente</p>
+
+![Diagramma casi d'uso Dipendente/Admin](Diagrammi_immagini/Dip!Admin_UseCase.svg)
+
+<p style="text-align: center;">Diagramma casi d'uso Dipendente/Admin</p>
+
+## **Pattern**
+
+I pattern sono una soluzione generale (modello) a problemi facenti parte delle stessa classe. <br />
+La descrizione di un pattern dipende da quale caratteristica mette in risalto: strutturale o comportamentale.
 
 ### **Model View Controller (MVC)**
 
@@ -305,6 +329,9 @@ Il pattern Proxy ci permette di avere una maggiore protezione nella fase di acqu
 ### **Memento**
 
 Per permettere un acquisto piu' veloce di articoli già acquistati in precedenza, possiamo utilizzare questo pattern per "ricordare" i carrelli passati, tramite lo storico acquisti del cliente
+
+## **Diagrammi delle classi**
+Questi diagrammi forniscono una panoramica del sistema mostrando le sue classi e le loro relazioni.
 
 
 
