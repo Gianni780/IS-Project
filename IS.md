@@ -65,7 +65,7 @@ Si vuole realizzare un sistema per la vendita di chiavi digitali tramite un E-Co
 |09| Acquisto da fornitore| Dipendente, Admin, Fornitore, Circuito di pagamento| Il Dipendente/admin acquista dal fornitore chiavi digitali| click su bottone|Logged  |Aggiornamento catalogo|Time-Out, Articolo non presente, cancellazione pagamento|   07  |  
 |   10    |   Visualizzazione del carrello    |   Utente    |   Rappresentazione degli articoli nel carrello    |   Interazione dell'utente con l'opzione carrello    |   // |   //  |   Time-Out   |  //    |
 |   11  |  Registrazione dipendenti |  Admin   |   Registrazione di nuovi dipendenti al sistema   |    interazione con funzione registrazione  |    Logged    |   Aggiornamento lista dipendenti    |   Time-Out, ID dipendente già presente  |  02    |
-| 12 | Cancellazione dipendenti | Admin | L'admin sceglie di rimuovere un dipendente dal sistema | Interazione con apposita funzione | Logged | Aggiornamento lista dipendenti | Time-Out, ID dipendente non presente| |
+| 12 | Cancellazione dipendenti | Admin | L'admin sceglie di rimuovere un dipendente dal sistema | Interazione con apposita funzione | Logged | Aggiornamento lista dipendenti | Time-Out, ID dipendente non presente| //|
 | 13 | Aggiunta nuovo articolo | Admin | L'admin inserisce nel catalogo nuovi articoli | Interazione con apposita funzione | Logged | Aggiornamento catalogo| Time-Out, articolo già presente | 09 |
 | 14 | Acquisto carrelli passati | Utente | Il cliente acquista nuovamente degli articoli già acquistati | Interazione con funzione di ri-acquisto | Logged, Storico non vuoto | Aggiornamento carrello | Time-Out | //|
 
@@ -289,6 +289,9 @@ Di seguito degli esempi: <br />
 
 <p style="text-align: center;">Diagramma casi d'uso Dipendente/Admin</p>
 
+<div style="page-break-after: always"></div>
+
+
 ## **Diagramma delle classi iniziale**
 
 Dalla definizione dei casi d'uso si può ricercare una struttura iniziale del sistema, che prevede delle classi per la gestione delle funzioni descritte
@@ -309,6 +312,8 @@ Dalla definizione dei casi d'uso si può ricercare una struttura iniziale del si
 La struttura del sistema sarà composta da queste classi fondamentali, dalle quali si svilupperà tutto l'intorno;  
 Prima di arrivare al diagramma delle classi vero e proprio ci sono sicuramente da considerare vari aspetti del sistema come i pattern possibili da seguire e le relazioni tra classi piu' nello specifico.  
 
+<div style="page-break-after: always"></div>
+
 
 ## **Pattern**
 
@@ -328,6 +333,7 @@ La divisione del sistema avverrà con i ruoli che saranno ricoperti rispettivame
 - **Model** = Dati contenuti nei vari Database e classi del sistema (Es. **Articolo**)
 - **View** = Interfaccia di comunicazione del sistema con l'Utente (**Rappresentazione del sistema**)
 
+
 ### **Singleton**
 
 Questo pattern ci assicura che alcune classi del sistema abbiano una e una sola istanza, come ad esempio il **manager utente** che dev'essere uguale per tutte le istanze del sistema
@@ -346,12 +352,18 @@ Il pattern Proxy ci permette di avere una maggiore protezione nella fase di acqu
 
 Per permettere un acquisto piu' veloce di articoli già acquistati in precedenza, possiamo utilizzare questo pattern per "ricordare" i carrelli passati, tramite lo storico acquisti del cliente
 
+<div style="page-break-after: always"></div>
+
+
 ## **Diagrammi delle classi**
 
 Questi diagrammi forniscono una panoramica del sistema mostrando le sue classi e le loro relazioni.  
 In particolare il diagramma delle classi di un singolo software costituisce la base per la costruzione dell'infrastruttura attorno allo stesso, ed e' alla base anche di altri diagrammi, statici e dinamici, che aiutano la comprensione e l'implementazione del prodotto.  
 
 ![Diagramma delle classi](Diagrammi_immagini/ClassDiagram_Progettazione.svg)
+
+<div style="page-break-after: always"></div>
+
 
 ## **Diagrammi delle interazioni**
 
@@ -369,6 +381,9 @@ I diagrammi delle interazioni ci aiutano a vedere come il sistema lavora, mostra
 ![Diagramma delle collaborazioni Aggiunta](Diagrammi_immagini/Aggiunta.svg)
 <p style="text-align: center;">Diagramma delle collaborazioni: Aggiunta</p>
 
+<div style="page-break-after: always"></div>
+
+
 ## **Diagrammi delle Attività**
 
 I diagrammi delle attività descrivono il flusso di eventi in un punto specifico del programma, descrivendo meglio anche le scelte possibili che possono essere percorse, in modo simile a un grafo di flusso
@@ -379,12 +394,18 @@ I diagrammi delle attività descrivono il flusso di eventi in un punto specifico
 ![Diagramma delle Attività Aggiunta Carrello](Diagrammi_immagini/AggiuntaAlCarrello.svg)
 <p style="text-align: center;">Diagramma delle Attività: Aggiunta al carrello</p>
 
+<div style="page-break-after: always"></div>
+
+
 ## **Diagramma dei package**
 
 Il diagramma dei package aiuta a capire ed esprimere meglio le dipendenze tra i vari package di cui e' composto il software, e di conseguenza tra le varie classi, di cui sono composti i package
 
 ![Diagramma dei package](Diagrammi_immagini/PackageDiagram.svg)
 <p style="text-align: center;">Diagramma dei package</p>
+
+<div style="page-break-after: always"></div>
+
 
 ## **Diagramma delle componenti**
 
@@ -393,12 +414,18 @@ Il diagramma delle componenti mostra come le varie parti del sistema si interfac
 ![Diagramma delle componenti](Diagrammi_immagini/ComponentDiagram.svg)
 <p style="text-align: center;">Diagramma delle componenti</p>
 
+<div style="page-break-after: always"></div>
+
+
 ## **Diagramma dei deployment**
 
 Il diagramma dei rilasci/deployment mostra l'infrastruttura hardware su cui si poggia il software, e le altre componenti hardware con il quale si può interfacciare e comunicare
 
 ![Diagramma dei deployment](Diagrammi_immagini/DeploymentDiagram.svg)
 <p style="text-align: center;">Diagramma dei deployment</p>
+
+<div style="page-break-after: always"></div>
+
 
 ## **Diagrammi BPMN**
 
@@ -409,6 +436,9 @@ I diagrammi BPMN aiutano a descrivere un processo all'interno del sistema sotto 
 
 ![Diagramma BPMN Login](bpmn-login.svg)
 <p style="text-align: center;">Diagramma BPMN Login</p>
+
+<div style="page-break-after: always"></div>
+
 
 #
 
