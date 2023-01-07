@@ -2,7 +2,7 @@
 
 ## Tecnica di sviluppo software, MODELLO A CASCATA
 
-Nello sviluppo di questo software si utilizza la tecnica del modello a cascata, che parte dalla definizione dei requisiti e delle feature, fino ad arrivare allo sviluppo effettivo del prodotto con conseguente rilascio al cliente.  
+Nello sviluppo di questo software e' stata utilizzata la tecnica del modello a cascata, che parte dalla definizione dei requisiti, fino ad arrivare allo sviluppo effettivo del prodotto con conseguente rilascio al cliente.  
 In questo caso l'attenzione alla **fase di definizione dei requisiti** e' massima in quanto rappresenta la parte cruciale del progetto, dalla quale si possono propagare gli **errori piu' gravi**, che possono portare a una grande difficolta' nella loro possibile correzione.  
 
 ## Breve descrizione
@@ -54,20 +54,20 @@ Si vuole realizzare un sistema per la vendita di chiavi digitali tramite un E-Co
 ## Casi D'uso
 | ID  | Nome caso d'uso | Attori  | Descrizione | Trigger | Precondizioni | Post condizioni  | Eccezioni | Include |
 |-----------|-----------|-------------|---------------|-----------------|-----------------|---------------|-----------------|----------------|
-| 01  | Modifica rappresentazione sistema     | Utente  | L'utente sfoglia gli articoli e modifica la visione tramite i filtri  |  Interazione dell'utente   |  //   |  modifica interfaccia visualizzata  |   Time-Out   |     //   |
+| 01  | Modifica rappresentazione sistema     | Utente  | L'utente sfoglia gli articoli e modifica la visione tramite i filtri  |  Interazione dell'utente   |  //  |  modifica interfaccia visualizzata  |   Time-Out   |     //   |
 |02| Registrazione| Utente| l'utente effettua una nuova registrazione al sistema| Click su pulsante di registrazione| Utente non ancora registrato| Logged | Time-Out, Account già esistente|  //|
 |03| Login| Utente, Dipendente, Admin| L'Utente/Dipendente/Admin accede al sistema| Click sul pulsante di accesso| Account già esistente| Logged | Time-Out, Account non esistente| 02 |
-|04| Visualizzazione Profilo| Utente| L'utente visualizza informazioni personali e ne può modificare alcune| Click nella sezione Profilo|Logged |  |  Time-Out  |  |
-|05| Aggiunta Articolo| Utente| L'utente aggiunge un articolo al carrello| Interazione dell'utente con bottone| | Modifica carrello|  Time-Out, Articolo esaurito|  |
-|06| rimozione articolo| Utente| l'utente rimuove un articolo dal carrello| interazione col carrello| almeno un articolo nel carrello| modifica carrello | Time-Out, Articolo non piu presente| |
-|07| Pagamento Utente| Utente, Circuito di pagamento| l'utente deve  pagare con un circuito di pagamento a scelta| Interazione utente con procedura di pagamento| almeno un articolo nel carrello| modifica carrello, modifica data1 | Time-Out, errore pagamento, Pagamento cancellato |  |
-|08| Modifica sistema| Dipendente| Il Dipendente modifica il catalogo nella grafica e nei contenuti| Accesso ad area di modifica| Logged| Modifica interfaccia sistema e/o data1|Time-Out|  |
+|04| Visualizzazione Profilo| Utente| L'utente visualizza informazioni personali e ne può modificare alcune| Click nella sezione Profilo|Logged | // |  Time-Out  | // |
+|05| Aggiunta Articolo| Utente| L'utente aggiunge un articolo al carrello| Interazione dell'utente con bottone|// | Modifica carrello|  Time-Out, Articolo esaurito|  //|
+|06| rimozione articolo| Utente| l'utente rimuove un articolo dal carrello| interazione col carrello| almeno un articolo nel carrello| modifica carrello | Time-Out, Articolo non piu presente|// |
+|07| Pagamento Utente| Utente, Circuito di pagamento| l'utente deve  pagare con un circuito di pagamento a scelta| Interazione utente con procedura di pagamento| almeno un articolo nel carrello| modifica carrello, modifica data1 | Time-Out, errore pagamento, Pagamento cancellato |  //|
+|08| Modifica sistema| Dipendente| Il Dipendente modifica il catalogo nella grafica e nei contenuti| Accesso ad area di modifica| Logged| Modifica interfaccia sistema e/o data1|Time-Out|  //|
 |09| Acquisto da fornitore| Dipendente, Admin, Fornitore, Circuito di pagamento| Il Dipendente/admin acquista dal fornitore chiavi digitali| click su bottone|Logged  |Aggiornamento catalogo|Time-Out, Articolo non presente, cancellazione pagamento|   07  |  
-|   10    |   Visualizzazione del carrello    |   Utente    |   Rappresentazione degli articoli nel carrello    |   Interazione dell'utente con l'opzione carrello    |    |     |   Time-Out   |      |
+|   10    |   Visualizzazione del carrello    |   Utente    |   Rappresentazione degli articoli nel carrello    |   Interazione dell'utente con l'opzione carrello    |   // |   //  |   Time-Out   |  //    |
 |   11  |  Registrazione dipendenti |  Admin   |   Registrazione di nuovi dipendenti al sistema   |    interazione con funzione registrazione  |    Logged    |   Aggiornamento lista dipendenti    |   Time-Out, ID dipendente già presente  |  02    |
 | 12 | Cancellazione dipendenti | Admin | L'admin sceglie di rimuovere un dipendente dal sistema | Interazione con apposita funzione | Logged | Aggiornamento lista dipendenti | Time-Out, ID dipendente non presente| |
-| 13 | Aggiunta nuovo articolo | Admin | L'admin inserisce nel catalogo nuovi articoli | Interazione con apposita funzione | Logged | Aggiornamento catalogo| Time-Out, articolo già presente | |
-| 14 | Acquisto carrelli passati | Utente | Il cliente acquista nuovamente degli articoli già acquistati | Interazione con funzione di ri-acquisto | Logged, Storico non vuoto | Aggiornamento carrello | Time-Out | |
+| 13 | Aggiunta nuovo articolo | Admin | L'admin inserisce nel catalogo nuovi articoli | Interazione con apposita funzione | Logged | Aggiornamento catalogo| Time-Out, articolo già presente | 09 |
+| 14 | Acquisto carrelli passati | Utente | Il cliente acquista nuovamente degli articoli già acquistati | Interazione con funzione di ri-acquisto | Logged, Storico non vuoto | Aggiornamento carrello | Time-Out | //|
 
 
 <div style="page-break-after: always"></div>
@@ -170,6 +170,11 @@ Si vuole realizzare un sistema per la vendita di chiavi digitali tramite un E-Co
 2. l'utente sceglie l'articolo da rimuovere e interagisce col bottone **rimuovi**
 3. Il sistema aggiorna la visualizzazione del carrello ed il suo contenuto rimuovendo l'articolo in questione e mantenendone eventuali altri
 
+#### Alternative flow 
+
+3. Il sistema non trova l'articolo nel carrello
+4. Il sistema aggiorna la visualizzazione del carrello, con un avviso a schermo che indica l'errore di **articolo non piu' presente**
+
 ### 07 (alternative flow incluso)
 
 1. L'utente, tramite apposita icona, accede alla sezione **carrello**
@@ -228,6 +233,10 @@ Si vuole realizzare un sistema per la vendita di chiavi digitali tramite un E-Co
 4. Dopo una verifica del sistema dei dati inseriti dall'admin il nuovo profilo viene creato
 5. Il sistema riporta l'admin alla schermata del suo profilo e crea una finestra con il messaggio di avvenuta registrazione
 
+#### Alternative flow
+
+5. Il sistema riporta l'admin alla finestra di registrazione dipendenti, con un avviso il quale informa che l'utente e' già presente
+
 ### 12
 
 1. L'admin accede alla sua area personale
@@ -238,12 +247,17 @@ Si vuole realizzare un sistema per la vendita di chiavi digitali tramite un E-Co
 6. Il sistema elimina definitivamente il profilo dal data1
 7. Il sistema riporta l'admin alla schermata del suo profilo e crea una finestra con il messaggio di avvenuta delezione
 
+#### Alternative flow
+
+6. Il sistema non trova piu' riscontro dell'utente nel sistema
+7. Il sistema riporta l'admin alla schermata di delezione, con un avviso il quale informa che l'utente non e' presente
+
 ### 13
 
 1. L'admin è già loggato
 2. L'admin accede alla sua area personale
 3. Tramite apposito comando, l'admin visualizza una lista completa dei prodotti in catalogo
-4. L'admin aggiunge una nuova voce alla lista inserendo il nuovo prodotto
+4. L'admin aggiunge una nuova voce alla lista inserendo il nuovo prodotto (**rifacendosi al caso d'uso 09**)
 5. Il sistema controlla che il prodotto non sia già presente (confrontando ID)
 6. Il sistema visualizza un messaggio di conferma
 
@@ -254,24 +268,7 @@ Si vuole realizzare un sistema per la vendita di chiavi digitali tramite un E-Co
 3. Il cliente sceglie un ordine da comprare nuovamente e interagisce con il bottone per il ri-acquisto
 4. Il sistema popola il carrello con gli articoli dell'ordine scelto
 
-## (Schizzo per la progettazione)
 
-### Classi
-
-- Articolo
-- Carrello
-- Utente (specializzato in base al tipo)
-- Rappresentazione del sistema (specializzata in base alla schermata desiderata)
-- Pagamento
-- Manager gestione dei filtri
-- Manager modifica del sistema
-- Manager gestione articoli (aggiunta, rimozione, etc..)
-
-![Diagramma delle classi iniziale](Diagrammi_immagini/Class_Diagram_Analisi.svg)  
-
-La struttura del sistema sarà composta da queste classi fondamentali, dalle quali si svilupperà tutto l'intorno;  
-La visione scelta in questo caso è sicuramente quella dell'Utente/Compratore;  
-Prima di arrivare al diagramma delle classi vero e proprio ci sono sicuramente da considerare vari aspetti del sistema come i pattern possibili da seguire e le relazioni tra classi piu' nello specifico.  
 
 #
 
@@ -293,6 +290,27 @@ Di seguito degli esempi: <br />
 ![Diagramma casi d'uso Dipendente/Admin](Diagrammi_immagini/Dip!Admin_UseCase.svg)
 
 <p style="text-align: center;">Diagramma casi d'uso Dipendente/Admin</p>
+
+## **Diagramma delle classi iniziale**
+
+Dalla definizione dei casi d'uso si puo' ricercare una struttura iniziale del sistema, che prevede delle classi per la gestione delle funzioni descritte
+
+### Classi
+
+- Articolo
+- Carrello
+- Utente (specializzato in base al tipo)
+- Rappresentazione del sistema (specializzata in base alla schermata desiderata)
+- Pagamento
+- Manager gestione del sistema
+
+![Diagramma delle classi iniziale](Diagrammi_immagini/Class_Diagram_Analisi.svg)  
+
+<p style="text-align: center;">Diagramma delle classi Iniziale</p>
+
+La struttura del sistema sarà composta da queste classi fondamentali, dalle quali si svilupperà tutto l'intorno;  
+Prima di arrivare al diagramma delle classi vero e proprio ci sono sicuramente da considerare vari aspetti del sistema come i pattern possibili da seguire e le relazioni tra classi piu' nello specifico.  
+
 
 ## **Pattern**
 
@@ -331,7 +349,60 @@ Il pattern Proxy ci permette di avere una maggiore protezione nella fase di acqu
 Per permettere un acquisto piu' veloce di articoli già acquistati in precedenza, possiamo utilizzare questo pattern per "ricordare" i carrelli passati, tramite lo storico acquisti del cliente
 
 ## **Diagrammi delle classi**
-Questi diagrammi forniscono una panoramica del sistema mostrando le sue classi e le loro relazioni.
+
+Questi diagrammi forniscono una panoramica del sistema mostrando le sue classi e le loro relazioni.  
+In particolare il diagramma delle classi di un singolo software costituisce la base per la costruzione dell'infrastruttura attorno allo stesso, ed e' alla base anche di altri diagrammi, statici e dinamici, che aiutano la comprensione e l'implementazione del prodotto.  
+
+![Diagramma delle classi](Diagrammi_immagini/ClassDiagram_Progettazione.svg)
+
+## **Diagrammi delle interazioni**
+
+I diagrammi delle interazioni ci aiutano a vedere come il sistema lavora, mostra cosa fanno le classi nel sistema e come comunicano tra di loro soprattutto
+
+![Diagramma delle sequenze Pagamento](Diagrammi_immagini/Pagamento.svg)
+<p style="text-align: center;">Diagramma delle sequenze: Pagamento</p>
+
+![Diagramma delle sequenze Aggiunta/Rimozione](Diagrammi_immagini/Aggiunta!Rimozione.svg)
+<p style="text-align: center;">Diagramma delle sequenze: Aggiunta/Rimozione</p>
+
+![Diagramma delle collaborazioni Pagamento](Diagrammi_immagini/Pagamento_Collaborazione.svg)
+<p style="text-align: center;">Diagramma delle collaborazioni: Pagamento</p>
+
+![Diagramma delle collaborazioni Aggiunta](Diagrammi_immagini/Aggiunta.svg)
+<p style="text-align: center;">Diagramma delle collaborazioni: Aggiunta</p>
+
+## **Diagrammi delle Attività**
+
+I diagrammi delle attività descrivono il flusso di eventi in un punto specifico del programma, descrivendo meglio anche le scelte possibili che possono essere percorse, in modo simile a un grafo di flusso
+
+![Diagramma delle Attività Login](Diagrammi_immagini/Login.svg)
+<p style="text-align: center;">Diagramma delle Attività: Login</p>
+
+![Diagramma delle Attività Aggiunta Carrello](Diagrammi_immagini/AggiuntaAlCarrello.svg)
+<p style="text-align: center;">Diagramma delle Attività: Aggiunta al carrello</p>
+
+## **Diagramma dei package**
+
+Il diagramma dei package aiuta a capire ed esprimere meglio le dipendenze tra i vari package di cui e' composto il software, e di conseguenza tra le varie classi, di cui sono composti i package
+
+![Diagramma dei package](Diagrammi_immagini/PackageDiagram.svg)
+<p style="text-align: center;">Diagramma dei package</p>
+
+## **Diagramma delle componenti**
+
+Il diagramma delle componenti mostra come le varie parti del sistema si interfacciano tra di loro, ad esempio come l'utente riesce ad interagire con gli articoli presenti nella piattaforma
+
+![Diagramma delle componenti](Diagrammi_immagini/ComponentDiagram.svg)
+<p style="text-align: center;">Diagramma delle componenti</p>
+
+## **Diagramma dei deployment**
+
+Il diagramma dei rilasci/deployment mostra l'infrastruttura hardware su cui si poggia il software, e le altre componenti hardware con il quale si può interfacciare e comunicare
+
+![Diagramma dei deployment](Diagrammi_immagini/DeploymentDiagram.svg)
+<p style="text-align: center;">Diagramma dei deployment</p>
+
+
 
 
 
