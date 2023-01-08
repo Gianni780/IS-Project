@@ -1,6 +1,6 @@
 # Progetto E-Commerce di chiavi digitali
 
-## Tecnica di sviluppo software, MODELLO A CASCATA
+## Tecnica di sviluppo software: MODELLO A CASCATA
 
 Nello sviluppo di questo software e' stata utilizzata la tecnica del modello a cascata, che parte dalla definizione dei requisiti, fino ad arrivare allo sviluppo effettivo del prodotto con conseguente rilascio al cliente.  
 In questo caso l'attenzione alla **fase di definizione dei requisiti** e' massima in quanto rappresenta la parte cruciale del progetto, dalla quale si possono propagare gli **errori piu' gravi**, che possono portare a una grande difficolta' nella loro possibile correzione.  
@@ -34,7 +34,7 @@ Si vuole realizzare un sistema per la vendita di chiavi digitali tramite un E-Co
 - La piattaforma deve essere funzionante 24/7
 
 ## Attori
-- Utente
+- Utente (in questa prima fase il termine è usato con significato di "cliente")
 - Dipendente
 - Admin
 - Fornitore (attore secondario)
@@ -59,7 +59,7 @@ Si vuole realizzare un sistema per la vendita di chiavi digitali tramite un E-Co
 |03| Login| Utente, Dipendente, Admin| L'Utente/Dipendente/Admin accede al sistema| Click sul pulsante di accesso| Account già esistente| Logged | Time-Out, Account non esistente| 02 |
 |04| Visualizzazione Profilo| Utente| L'utente visualizza informazioni personali e ne può modificare alcune| Click nella sezione Profilo|Logged | // |  Time-Out  | // |
 |05| Aggiunta Articolo| Utente| L'utente aggiunge un articolo al carrello| Interazione dell'utente con bottone|// | Modifica carrello|  Time-Out, Articolo esaurito|  //|
-|06| rimozione articolo| Utente| l'utente rimuove un articolo dal carrello| interazione col carrello| almeno un articolo nel carrello| modifica carrello | Time-Out, Articolo non piu presente|// |
+|06| Rimozione articolo| Utente| l'utente rimuove un articolo dal carrello| interazione col carrello| almeno un articolo nel carrello| modifica carrello | Time-Out, Articolo non piu presente|// |
 |07| Pagamento Utente| Utente, Circuito di pagamento| l'utente deve  pagare con un circuito di pagamento a scelta| Interazione utente con procedura di pagamento| almeno un articolo nel carrello| modifica carrello, modifica data1 | Time-Out, errore pagamento, Pagamento cancellato |  //|
 |08| Modifica sistema| Dipendente| Il Dipendente modifica il catalogo nella grafica e nei contenuti| Accesso ad area di modifica| Logged| Modifica interfaccia sistema e/o data1|Time-Out|  //|
 |09| Acquisto da fornitore| Dipendente, Admin, Fornitore, Circuito di pagamento| Il Dipendente/admin acquista dal fornitore chiavi digitali| click su bottone|Logged  |Aggiornamento catalogo|Time-Out, Articolo non presente, cancellazione pagamento|   07  |  
@@ -119,17 +119,17 @@ Si vuole realizzare un sistema per la vendita di chiavi digitali tramite un E-Co
 6. Il Data1 controlla che i dati inseriti siano corretti e fa accedere l'attore al sistema
 7. Il sistema chiude la finestra di accesso
 8. In base al profilo dell'attore viene mostrata un diversa visualizzazione della piattaforma:
-  - Utente -> visualizzazione **Logged**
-  - Nuove funzioni:
-    - Aggiunta dell'opzione **profilo**
-    - **rimozione opzioni di registrazione**-> accedi, registrati
-  - Dipendente -> visualizzazione **Manager**
-  - Nuove funzioni:
-    - Modifica della visualizzazione home page
-    - Gestione Inventario
-    - Ordine chiavi da fornitore
-    - **rimossa opzione** carrello
-    - **rimosse opzioni di registrazione**-> accedi, registrati
+   - Utente -> visualizzazione **Logged**
+     - Nuove funzioni:
+       - Aggiunta dell'opzione **profilo**
+       - **rimozione opzioni di registrazione**-> accedi, registrati
+     - Dipendente -> visualizzazione **Manager**
+     - Nuove funzioni:
+       - Modifica della visualizzazione home page
+       - Gestione Inventario
+       - Ordine chiavi da fornitore
+       - **rimossa opzione** carrello
+       - **rimosse opzioni di registrazione**-> accedi, registrati
 
 #### Alternative flow
 
@@ -191,6 +191,8 @@ Si vuole realizzare un sistema per la vendita di chiavi digitali tramite un E-Co
      - Se non è sufficiente, il circuito di pagamento lo notifica al sistema che visualizza una finestra apposita; l'utente viene reindirizzato alla scelta dei metodi di pagamento
 9. Dopo l'acquisto l'utente viene riportato alla schermata del carrello
 10. Il data1 viene aggiornato in base ai prodotti che sono stati acquistati e quindi vengono eliminati da quelli disponibili
+
+<div style="page-break-after: always"></div>
 
 ### 08
 
@@ -367,7 +369,7 @@ In particolare il diagramma delle classi di un singolo software costituisce la b
 
 ## **Diagrammi delle interazioni**
 
-I diagrammi delle interazioni ci aiutano a vedere come il sistema lavora, mostra cosa fanno le classi nel sistema e come comunicano tra di loro soprattutto
+I diagrammi delle interazioni ci aiutano a vedere come il sistema lavora, mostra cosa fanno le classi nel sistema e soprattutto come comunicano tra di loro
 
 ![Diagramma delle sequenze Pagamento](Diagrammi_immagini/Pagamento.svg)
 <p style="text-align: center;">Diagramma delle sequenze: Pagamento</p>
@@ -454,5 +456,8 @@ I test che abbiamo effettuato prevedono la verifica di alcune funzioni del carre
 ![Test effettivo](TESTS/Immagini_Test/CarrelloTest.png)
 
 
+# **FINE**
+## Compagnone Armando (A13002380) <br />
+## Pandolfi Gianluca (A13002381)
 
 
